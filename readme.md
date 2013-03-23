@@ -4,10 +4,9 @@ Get Blogging
 The Blog app should have the following:
 
  - User authentication
- - Admin
  - Ability to CRUD posts
  - Clean urls
- - Use twitter-bootstrap and sass for frontend designing
+ - Use of twitter-bootstrap for frontend
  - Probably unit testing implemented
 
 ___
