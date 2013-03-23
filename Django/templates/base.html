@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jtruncate.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>Get Blogging - Django</h1>
+        </div>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="span12 posts">
+            {% block posts %}{% endblock %}
+        </div>
+    </div>
+</div>
+<script>
+    $('.post-body').jTruncate("p");
+</script>
+</body>
+</html>

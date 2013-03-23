@@ -2,7 +2,8 @@
 ## Eclipse
 #################
 Django/db
-.idea/
+.idea
+django.wsgi
 *.pydevproject
 .project
 .metadata

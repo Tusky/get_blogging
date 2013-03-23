@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block posts %}
+    {% for post in posts %}
+        <div id="post-{{ forloop.counter }} post" class="well">
+            <h2 class="post-title"><a href="{% url single_post post.slug %}">{{ post.title }}</a></h2>
+            <small>Added on <span class="post-added_on">{{ post.added_on }}</span> by <a class="post-added_by" href="/author/{{ post.added_by }}">{{ post.added_by|capfirst }}</a></small>
+            <div class="post-tags">{% for tag in post.tags.all %}<a class="tag" href="{% url tag tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</div>
+            <div class="post-body">{{ post.body|linebreaksbr }}</div>
+        </div>
+    {% endfor %}
+    {% if not index %}<a href="{% url home %}" class="btn btn-primary">Back</a>{% endif %}
+{% endblock %}
