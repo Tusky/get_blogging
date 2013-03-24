@@ -7,7 +7,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'title' => 'Adminsite',
+	'title' => 'Laravel Blog',
 
 	/**
 	 * The path to your model config directory
@@ -41,7 +41,7 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return true;  # Auth::check();
+		return Auth::check();
 	},
 
 	/**
@@ -49,14 +49,14 @@ return array(
 	 *
 	 * @type string
 	 */
-	'login_path' => 'user/login',
+	'login_path' => 'login',
 
 	/**
 	 * This is the key of the return path that is sent with the redirection to your login_action. Input::get('redirect') will hold the return URL.
 	 *
 	 * @type string
 	 */
-	'login_redirect_key' => 'redirect',
+	'login_redirect_key' => 'admin',
 
 	/**
 	 * Global default rows per page

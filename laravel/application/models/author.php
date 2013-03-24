@@ -10,9 +10,7 @@ class Author extends Basemodel
         'password' => 'required',
         
     );
-    public function as_email(){
-        return "shit";
-    }
+
     public function posts() {
         return $this->has_many('Post');
     }

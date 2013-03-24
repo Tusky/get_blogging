@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blog.models import Post, Tag
-
+from django.contrib.auth import logout
 
 def index(request):
     posts = Post.objects.all().order_by("added_on").reverse()

@@ -31,14 +31,14 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array('as' => 'index', function()
 {
     #list posts
     $posts = Post::order_by('created_at', 'desc')->get();
 	return View::make('home.multi_post')
         ->with('posts', $posts)
         ->with('index', true);
-});
+}));
 
 Route::get('post/(:any)', function($post_slug)
 {
@@ -60,7 +60,33 @@ Route::get('author/(:any)', function($author_slug)
 Route::get('tag/(:any)', function($tag_slug)
 {
     #get posts by author
-    return View::make('home.index')->with('post_slug', $tag_slug);
+    $tag = Tag::with('post')->where_slug($tag_slug)->first();
+    return View::make('home.multi_post')
+        ->with('posts', $tag->post)
+        ->with('index', false);
+});
+
+Route::get('login', array('as' => 'login', function() {
+    return View::make('home.login');
+}));
+
+Route::post('login', function() {
+    $userdata = array(
+        'username'      => Input::get('username'),
+        'password'      => Input::get('password')
+    );
+    if ( Auth::attempt($userdata) ){
+        return Redirect::to_route('index');
+    }
+    else{
+        return Redirect::to_route('login')
+        ->with('login_errors', true);
+    }
+});
+
+Route::get('logout', function() {
+    Auth::logout();
+    return Redirect::to_route('login');
 });
 
 /*

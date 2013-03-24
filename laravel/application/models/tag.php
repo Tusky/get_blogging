@@ -11,7 +11,7 @@ class Tag extends Basemodel
     );
 
     public function post() {
-        return $this->belongs_to('Post', 'posts_tags');
+        return $this->has_many_and_belongs_to('Post', 'posts_tags');
     }
 
 
