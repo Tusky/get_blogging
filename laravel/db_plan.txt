@@ -1,0 +1,14 @@
+User Post:hm
+    email:string:unique -> required|mail
+    password:string,32 -> required
+    timestamps
+
+Post User:bt Tag:hmb
+    title:string -> required
+    body:text -> required
+    slug:string -> required
+    timestamps
+
+Tag Post:bt
+    name: string -> required
+    slug: string -> required

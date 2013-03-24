@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -34,7 +33,34 @@
 
 Route::get('/', function()
 {
-	return View::make('home.index');
+    #list posts
+    $posts = Post::order_by('created_at', 'desc')->get();
+	return View::make('home.multi_post')
+        ->with('posts', $posts)
+        ->with('index', true);
+});
+
+Route::get('post/(:any)', function($post_slug)
+{
+    #get a post
+    $post = Post::where_slug($post_slug)->first();
+    return View::make('home.single_post')->with('post', $post);
+});
+
+Route::get('author/(:any)', function($author_slug)
+{
+    #get posts by author
+    $author = Author::where_nickname($author_slug)->first();
+    $posts = Post::where('author_id', '=', $author->id)->get();
+    return View::make('home.multi_post')
+        ->with('posts', $posts)
+        ->with('index', false);
+});
+
+Route::get('tag/(:any)', function($tag_slug)
+{
+    #get posts by author
+    return View::make('home.index')->with('post_slug', $tag_slug);
 });
 
 /*

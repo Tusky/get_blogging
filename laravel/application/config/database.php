@@ -63,14 +63,14 @@ return array(
 
 		'sqlite' => array(
 			'driver'   => 'sqlite',
-			'database' => 'application',
+			'database' => 'db',
 			'prefix'   => '',
 		),
 
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'database' => 'laravel',
 			'username' => 'root',
 			'password' => '',
 			'charset'  => 'utf8',
