@@ -1,0 +1,10 @@
+<% @posts.each_with_index  do |post, index| %>
+    <div id="post-<%= index %> post" class="well">
+      <h2 class="post-title"><%= link_to post.title, :controller => 'home', :action => 'show', :id => post %></h2>
+      <small>Added on <span class="post-added_on"><%= post.added_on %></span> by <%= link_to post.user.name, :controller => 'home', :action => 'show_author', :id => post.user_id %></small>
+      <div class="post-tags"><% post.categories.each do |cat| %><%= link_to cat.name, :controller => 'home', :action => 'show_tags', :id => cat %><% unless cat == post.categories.last %>, <% end %><% end %></div>
+      <div class="post-body"><%= simple_format(post.body) %></div>
+    </div>
+<% end %>
+
+<% if not current_page?('/') %><a href="/" class="btn btn-primary">Back</a><% end %>
