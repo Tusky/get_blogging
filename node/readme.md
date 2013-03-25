@@ -1,12 +1,16 @@
 Get Blogging - Node
 ---------------
 
-__Size of project__: xx mb  
-__Characters written__: xx,xxx char
+__Size of project__: xx mb
 
 ---
-10,000 connection, 100 concurrent tests  
-_(ab -n 10000 -c 100 http://localhost/)_
+100 connection, 1 concurrent tests  
+_(ab -n 100 -c 1 http://localhost/)_
+
+Server:    Node.js  
+Language:  Javascript  
+Framework: express  
+Database:  -  
 
 __Time taken for tests__: xxx seconds  
 __Time of the fastest response__: xxx ms  
