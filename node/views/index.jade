@@ -1,5 +1,15 @@
-extends layout
+//- extends layout
+
+
+block navigations
+	if userLoggedIn
+		li
+			a(href="/admin") Admin
+		li
+			a(href="/logout") Logout
+	else
+		li
+			a(href="/login") Login
 
 block content
-  h1= title
-  p Welcome to #{title}
+	p shit:
