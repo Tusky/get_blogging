@@ -4,7 +4,7 @@ Get Blogging - Ruby On Rails
 __Size of project__: 7 918 592 bytes
 
 ---
-100 connection, 1 concurrent tests
+100 connection, 1 concurrent tests  
 _(ab -n 100 -c 1 http://localhost/)_
 
 Server:    WebBrick 1.3.1
