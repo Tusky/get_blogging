@@ -1,0 +1,31 @@
+ Get Blogging - Node
+ ---------------
+ 
+__Size of project__: xx bytes
+ 
+ ---
+100 connection, 1 concurrent tests  
+_(ab -n 100 -c 1 http://localhost/)_
+
+Server:    Node.js  
+Language:  Javascript  
+Framework: express  
+Database:  -  
+
+__Time taken for tests__: 1.567 seconds  
+__Time of the fastest response__: 13 ms  
+__Time of the slowest response__: 111 ms  
+
+Get Blogging - Node
+---------------
+
+__Size of project__: xx mb  
+__Characters written__: xx,xxx char
+
+---
+100 connection, 1 concurrent tests  
+_(ab -n 100 -c 1 http://localhost/)_
+
+__Time taken for tests__: 1.567 seconds  
+__Time of the fastest response__: 13 ms  
+__Time of the slowest response__: 111 ms  

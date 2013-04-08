@@ -1,0 +1,14 @@
+!!! 5
+html(lang='en')
+    head
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+    body
+    .container
+        include ../includes/header
+        .row
+            .span12.posts
+                block content
+    script(type='text/javascript', src='/js/jquery.js')
+    script(type='text/javascript', src='/js/jtruncate.js')
+    script
+        $('.post-body').jTruncate("p");
