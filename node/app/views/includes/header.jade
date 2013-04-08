@@ -1,0 +1,17 @@
+.row
+    .span12
+        .navbar
+            .navbar-inner
+                a.brand(href='#') Get Blogging - node.js
+                ul.nav
+                    li
+                        a(href='/') Home
+                    if (req.isAuthenticated())
+                        li
+                            a(href='/admin/') Admin
+                        li
+                            a(href='/logout/') Logout
+                    else
+                        li
+                            a(href='/login') Login
+hr
