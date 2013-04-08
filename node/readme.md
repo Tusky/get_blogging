@@ -12,6 +12,7 @@ Language:  Javascript
 Framework: express  
 Database:  -  
 
-__Time taken for tests__: xx.xxx seconds  
-__Time of the fastest response__: xxx ms  
-__Time of the slowest response__: xxx ms  
+__Time taken for tests__: 1.567 seconds  
+__Time of the fastest response__: 13 ms  
+__Time of the slowest response__: 111 ms  
+
