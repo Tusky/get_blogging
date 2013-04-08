@@ -2,8 +2,6 @@
 ## Eclipse
 #################
 
-node
-
 Django/db
 .idea
 django.wsgi
