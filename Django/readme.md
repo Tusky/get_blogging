@@ -12,6 +12,6 @@ Language:  Python 2.7
 Framework: Django 1.4.3  
 Database:  SQLite  
 
-__Time taken for tests__: 3.381 seconds  
-__Time of the fastest response__: 34 ms  
-__Time of the slowest response__: 36 ms  
+__Time taken for tests__: 2.204 seconds
+__Time of the fastest response__: 22 ms
+__Time of the slowest response__: 28 ms
