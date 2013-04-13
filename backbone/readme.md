@@ -1,13 +1,17 @@
 Get Blogging - Backbone
 ---------------
 
-__Size of project__: xx mb  
-__Characters written__: xx,xxx char
+__Size of project__: 243 302 bytes  
 
 ---
-10,000 connection, 100 concurrent tests  
-_(ab -n 10000 -c 100 http://localhost/)_
+100 connection, 1 concurrent tests  
+_(ab -n 100 -c 1 http://backbone.local/)_
 
-__Time taken for tests__: xxx seconds  
-__Time of the fastest response__: xxx ms  
-__Time of the slowest response__: xxx ms  
+Server:    Apache 2.2  
+Language:  JavaScript  
+Framework: Backbone  
+Backend:  Django  
+
+__Time taken for tests__: 0.037 seconds  
+__Time of the fastest response__: 0 ms  
+__Time of the slowest response__: 1 ms  

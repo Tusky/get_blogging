@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jtruncate.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">Get Blogging - Django</a>
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="/admin/">Admin</a></li>
+                        <li><a href="/admin/logout/">Logout</a></li>
+                        {% else %}
+                        <li><a href="/admin/login/">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="span12 posts">
+            {% block posts %}{% endblock %}
+        </div>
+    </div>
+</div>
+<script>
+    $('.post-body').jTruncate("p");
+</script>
+</body>
+</html>

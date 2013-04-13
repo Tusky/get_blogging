@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script src="jquery.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="backbone-min.js"></script>
+    <script src="jtruncate.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="brand" href="#">Get Blogging - Backbone</a>
+                        <ul class="nav">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/admin/">Admin</a></li>
+                            <li><a href="/admin/logout/">Logout</a></li>
+                            <li><a href="/admin/login/">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="span12 posts">
+                <div id="posts"></div>
+            </div>
+        </div>
+    </div>
+
+    <script id="testTemplate" type="text/template">
+        <%= post.get('title') %>
+    </script>
+    <script id="postTemplate" type="text/template">
+        <div id="post-<%= post.get('id') %> post" class="well">
+            <h2 class="post-title"><a href="#/post/<%= post.get('id')%>"><%= post.get('title') %></a></h2>
+            <small>Added on <span class="post-added_on"><%= post.get('created_at') %></span> by <a class="post-added_by" href="#/author/<%= post.get('user_id')%>"><%= post.get('username')%></a></small>
+            <div class="post-tags">
+                <% var tags = post.get('tags'); for(var j=0;j < tags.length;j++){ %>
+                    <a class="tags" href="#/tag/<%= tags[j].id %>" ><%= tags[j].name %></a><% if( tags[j].id != tags[tags.length-1].id){ %>, <% } %>
+                <% } %>
+            </div>
+            <div class="post-body"><p><%= post.get('body') %></p></div>
+        </div>
+    </script>
+<script>
+    $(function() {
+        var Post = Backbone.Model.extend({});
+        var Posts = Backbone.Collection.extend({
+            model: Post,
+            initialize: function(props) {
+                this.url = props.url;
+            },
+            update: function() {
+                this.fetch();
+            }
+        });
+
+        var PostView = Backbone.View.extend({
+            template: _.template($('#postTemplate').html()),
+            render: function() {
+                $(this.el).html(this.template( { post: this.model } ));
+                return this;
+            }
+        });
+
+        var PostsView = Backbone.View.extend({
+            initialize: function () {
+                this.collection.on("change", this.render, this);
+                this.collection.on("add", this.render, this);
+
+                this.collection.fetch();
+                window.fetchInterval = setInterval(_.bind(this.collection.update, this.collection),1000);
+            },
+            render: function () {
+                console.log('rendering')
+                $('#posts').html('');
+                this.collection.each(this.addUpdate, this)
+                $('.post-body').jTruncate("p");
+                return this;
+            },
+            addUpdate: function(model) {
+                $('#posts').append(new PostView({ model: model}).render().el);
+            }
+        });
+
+        var AppRouter = Backbone.Router.extend({
+            routes: {
+                "post/:id": "getPost",
+                "author/:id": "getPostByAuthor",
+                "tag/:id": "getPostByTags",
+                "*actions": "defaultRoute"
+            }
+        });
+
+        var app_router = new AppRouter;
+        app_router.on('route:getPost', function (id) {
+            window.clearInterval(window.fetchInterval);
+            var postView = new PostsView({ collection: new Posts({url: "http://django.local/api/post.json/"+id}) });
+        });
+
+        app_router.on('route:getPostByAuthor', function (id) {
+            window.clearInterval(window.fetchInterval);
+            var postView = new PostsView({ collection: new Posts({url: "http://django.local/api/author.json/"+id}) });
+        });
+
+        app_router.on('route:getPostByTags', function (id) {
+            window.clearInterval(window.fetchInterval);
+            var postView = new PostsView({ collection: new Posts({url: "http://django.local/api/tag.json/"+id}) });
+        });
+
+        app_router.on('route:defaultRoute', function (actions) {
+            window.clearInterval(window.fetchInterval);
+            var postView = new PostsView({ collection: new Posts({url: "http://django.local/api/posts.json"}) });
+        });
+
+        Backbone.history.start();
+
+    });
+</script>
+</body>
+</html>
+
+
+
+
